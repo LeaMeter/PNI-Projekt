@@ -1,0 +1,28 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+            <p>Jeste li sigurni da želite promjeniti status "{{upis.status}}" za predmet "{{predmet.kod}} {{predmet.ime}}"?</p>
+            <form action="{% url 'upis_status' predmet.kod student.id %}" method="POST">
+                {% csrf_token %}
+                <a class="btn btn-warning" href="{% url 'upisni_list' student.id %}" name="Odustani">Odustani</a>
+
+                <button class="btn btn-info" type="submit" name="Promijeni">
+                    {% if upis.status == "nepoloženo" %}
+                        Položeno
+                    {% endif %}
+                    {% if upis.status == "položeno" %}
+                        Nepoloženo
+                    {% endif %}
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

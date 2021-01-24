@@ -1,0 +1,46 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<h5>PREDMETI</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-info" href="{%  url 'predmet_novi'%}" >Dodaj Novi Predmet</a>
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th>Kod</th>
+                    <th>Ime Predmeta</th>
+                    <th>Program</th>
+                    <th>ECTS</th>
+                    <th>Semestar Redovni</th>
+                    <th>Semestar Izvanredni</th>
+                    <th>Izborni</th>
+				</tr>
+
+				{% for predmet in predmeti %}
+					<tr>
+						<td><a class="btn btn-info" href="{%  url 'predmet_uredi' predmet.kod %}" >
+                            <i class="far fa-edit"></i>
+                            </a>
+                        </td>
+						<td>{{predmet.kod}}</td>
+                        <td>{{predmet.ime}}</td>
+                        <td>{{predmet.program}}</td>
+                        <td>{{predmet.ECTS}}</td>
+                        <td>{{predmet.sem_redovni}}</td>
+                        <td>{{predmet.sem_izvanredni}}</td>
+                        <td>{{predmet.izborni}}</td>
+
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

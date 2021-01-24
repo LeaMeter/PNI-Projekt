@@ -16,12 +16,12 @@
 					<th>Ime Predmeta</th>
 				</tr>
 
-				{% for predmet in predmeti %}
+                {% for predmet in neupisani_predmeti %}
 					<tr>
-						<td><a class="fa fa-plus" href=""></a></td>
+						<td><a class="fa fa-plus" href="{% url 'upis' predmet.kod student.id %}"></a></td>
 						<td>{{predmet.kod}}</td>
 						<td>{{predmet.ime}}</td>
-					</tr>
+                    </tr>
 				{% endfor %}
 
 			</table>
@@ -47,18 +47,20 @@
                     <tr>
                         {% if upis.status == "nepoloženo" %}
                         <td>
-                            <a class="btn btn-success" href="" >
+                            <a class="btn btn-success" href="{% url 'upis_status' predmet.kod student.id %}" >
                             <i class="fa fa-check-square"></i>
                             </a>
-                            <a class="btn btn-danger" href="" >
+                            <a class="btn btn-danger" href="{% url 'upis_izbrisi' predmet.kod student.id %}" >
                             <i class="fa fa-times"></i>
                             </a>
                         </td>
                         {% endif %}
                         {% if upis.status == "položeno" %}
-                        <td><button class="btn btn-success" disabled>
-                            <i class="fa fa-check" aria-hidden="true" ></i>
-                        </button></td>
+                        <td>
+                            <a class="btn btn-success" href="{% url 'upis_status' predmet.kod student.id %}" >
+                            <i class="fa fa-check"></i>
+                            </a>
+                        </td>
                         {% endif %}
                         <td>{{predmet.ime}}</td>
                         <td>{{predmet.sem_izvanredni}}</td>
@@ -68,21 +70,21 @@
                     <tr>
                         {% if upis.status == "nepoloženo" %}
                         <td>
-                            <a class="btn btn-success" href="" >
+                            <a class="btn btn-success" href="{% url 'upis_status' predmet.kod student.id %}" >
                             <i class="fa fa-check-square"></i>
                             </a>
-                            <a class="btn btn-danger" href="" >
+                            <a class="btn btn-danger" href="{% url 'upis_izbrisi' predmet.kod student.id %}" >
                             <i class="fa fa-times"></i>
                             </a>
                         </td>
                         {% endif %}
                         {% if upis.status == "položeno" %}
-                        <td><button class="btn btn-success" disabled>
-                            <i class="fa fa-check" aria-hidden="true" ></i>
-                        </button></td>
+                        <td>
+                            <a class="btn btn-success" href="{% url 'upis_status' predmet.kod student.id %}" >
+                            <i class="fa fa-check"></i>
+                            </a>
+                        </td>
                         {% endif %}
-
-                        
                         <td>{{predmet.ime}}</td>
                         <td>{{predmet.sem_redovni}}</td>
                     </tr>

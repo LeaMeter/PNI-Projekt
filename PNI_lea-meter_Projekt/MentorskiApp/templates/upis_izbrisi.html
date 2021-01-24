@@ -1,0 +1,19 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+            <p>Jeste li sigurni da želite izbrisati upisani predmet "{{predmet.kod}} {{predmet.ime}}"?</p>
+            <form action="{% url 'upis_izbrisi' predmet.kod student.id %}" method="POST">
+                {% csrf_token %}
+                <a class="btn btn-warning" href="{% url 'upisni_list' student.id %}" name="Odustani">Odustani</a>
+                <button class="btn btn-danger" type="submit" name="Izbriši">Izbriši</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
